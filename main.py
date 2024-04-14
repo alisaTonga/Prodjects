@@ -1,26 +1,17 @@
-master_pwd = input('What is the master password? ')
-def view():
-    with open('password.txt', 'r') as f:  # creating file with pwd
-        for line in f.readlines():
-            data = line.rstrip()
-            user, pasw = data.split('|')
-
-
-def add():
-    name = input('Account Name: ')
-    pwd = input('Password: ')
-
-    with open('password.txt', 'a') as f:  # creating file with pwd
-        f.write('Name: ' + name + '|' + 'Password: ' + pwd + '\n')
-
-
-mode = input('Would you like to add a new password or view existing ones? (view / add) ').lower()
-if mode == 'view':
-    view()
-elif mode == 'add':
-    add()
-else:
-    print('Invalid mode')
-
-
-
+import turtle as tur
+import colorsys as cs
+tur.setup(800,800)
+tur.speed(200)
+tur.width(1)
+tur.bgcolor("black")
+for j in range(25):
+    for i in range(15):
+        tur.color(cs.hsv_to_rgb(i/15,j/25,1))
+        tur.right(90)
+        tur.circle(200-j*4,90)
+        tur.left(90)
+        tur.circle(200-j*4,90)
+        tur.right(180)
+        tur.circle(50,24)
+tur.hideturtle()
+tur.done()
