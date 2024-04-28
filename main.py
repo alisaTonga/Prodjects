@@ -1,17 +1,28 @@
-import turtle as tur
-import colorsys as cs
-tur.setup(800,800)
-tur.speed(200)
-tur.width(1)
-tur.bgcolor("black")
-for j in range(25):
-    for i in range(15):
-        tur.color(cs.hsv_to_rgb(i/15,j/25,1))
-        tur.right(90)
-        tur.circle(200-j*4,90)
-        tur.left(90)
-        tur.circle(200-j*4,90)
-        tur.right(180)
-        tur.circle(50,24)
-tur.hideturtle()
-tur.done()
+import os
+import qrcode
+from PIL import Image
+from faker import Faker
+
+# Initialize Faker
+fake = Faker()
+
+# Generate a random quote
+quote = fake.catch_phrase()
+
+# Create a QR code for the quote
+qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=4,
+)
+qr.add_data(quote)
+qr.make(fit=True)
+img = qr.make_image(fill_color="black", back_color="white")
+
+# Save the QR code as an image file
+img.save(os.path.join(os.getcwd(), "random_quote_qr.png"))
+
+# Print the generated quote
+print("Generated quote:")
+print(quote)
